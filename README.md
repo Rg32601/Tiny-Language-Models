@@ -4,7 +4,7 @@ This repository demonstrates pre-training and fine-tuning a compact BERT model (
 
 ## Features
 
-- Pre-train compact BERT (BERT6) with optional convolutional layers
+- Pre-train compact BERT with optional convolutional layers
 - Fine-tune for text classification
 - Dataset loading, sampling, and tokenization utilities
 - Modular and easy-to-extend structure
