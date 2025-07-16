@@ -2,6 +2,7 @@ import torch
 from torch import nn
 from torch.utils.data import DataLoader
 from tqdm import tqdm
+from .utils import mask_tokens
 
 def cls_test(
     test_dataloader: DataLoader,
