@@ -20,7 +20,7 @@ If you find this repository useful, please cite:
     doi = {Your DOI here},
     url = {Paper URL}
 }
-
+ ```
 This repository demonstrates pre-training and fine-tuning a compact BERT model (optionally with convolutional layers) using Masked Language Modeling (MLM) on Wikipedia, then fine-tuning for text classification tasks like AG News or DBpedia. It’s modular and PyTorch-based, utilizing Hugging Face Transformers.
 
 ## Features
