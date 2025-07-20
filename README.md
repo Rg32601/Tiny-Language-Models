@@ -1,13 +1,12 @@
 # Tiny Language Models
 
-**This repository contains code accompanying our paper:**
+**Ronit D. Gross<sup>a,1</sup>, Yarden Tzach<sup>a,1</sup>, Tal Halevi<sup>a</sup>, Ella Koresh<sup>a</sup> and Ido Kanter<sup>a,b,\*</sup>**
 
-> **[Tiny Language Models]**  
-**Ronit D. Grossa¹, Yarden Tzacha¹, Tal Halevia, Ella Koresha, and Ido Kanter²,***  
-¹ Department of Physics, Bar-Ilan University, Ramat-Gan, 52900, Israel  
-² Gonda Interdisciplinary Brain Research Center, Bar-Ilan University, Ramat-Gan, 52900, Israel  
-\* Corresponding author: [ido.kanter@biu.ac.il](mailto:ido.kanter@biu.ac.il)  
-¹ These authors equally contributed to this work
+<sup>a</sup>Department of Physics, Bar-Ilan University, Ramat-Gan, 52900, Israel  
+<sup>b</sup>Gonda Interdisciplinary Brain Research Center, Bar-Ilan University, Ramat-Gan, 52900, Israel  
+\*Corresponding author at: Department of Physics, Bar-Ilan University, Ramat-Gan, 52900, Israel.  
+E-mail address: [ido.kanter@biu.ac.il](mailto:ido.kanter@biu.ac.il) (I. Kanter)  
+<sup>1</sup>These authors equally contributed to this work
 
 ---
 
