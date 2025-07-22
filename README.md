@@ -1,4 +1,4 @@
-# Tiny Language Models
+# [Tiny Language Models](https://arxiv.org/pdf/2507.14871)
 
 **Ronit D. Gross<sup>a,1</sup>, Yarden Tzach<sup>a,1</sup>, Tal Halevi<sup>a</sup>, Ella Koresh<sup>a</sup> and Ido Kanter<sup>a,b,\*</sup>**
 
