@@ -64,4 +64,4 @@ def download_and_load_pre_trained_model(
             with open(fpath, "wb") as f:
                 f.write(r.content)
     print("All model files downloaded.")
-    return load_pretrained_tinybert(model_dir)
+    return load_pretrained_model(model_dir)
