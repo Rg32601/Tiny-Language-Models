@@ -1,0 +1,25 @@
+model_name: pretrain-tinybert-layers6-conv0-k3-d3-heads12-maxlen128-vocab30522-ep50-wikisize90000
+architecture: TinyBERT
+num_transformer_layers: 6
+num_conv_layers: 0
+conv_kernel_size: 3
+conv_channels: 3
+num_attention_heads: 12
+max_sequence_length: 128
+vocab_size: 30522
+pretrain_epochs: 50
+pretrain_data: Wikipedia
+pretrain_data_size: 90000
+files:
+  - config.json
+  - model.safetensors
+description: |
+  This model is a compact BERT-style language model, trained from scratch for masked language modeling.
+  It has 6 transformer layers, 0 convolutional layers, hidden size d=3, and 12 attention heads.
+  Trained for 50 epochs on a 90,000-sample subset of Wikipedia.
+usage: |
+  from configs.utils import download_and_load_pre_trained_model
+  model = download_and_load_pre_trained_model("pretrain-tinybert-layers6-conv0-k3-d3-heads12-maxlen128-vocab30522-ep50-wikisize90000")
+notes: |
+  - No convolutional layers were used in this model (pure transformer).
+  - For inference or fine-tuning, see main README for usage instructions.
