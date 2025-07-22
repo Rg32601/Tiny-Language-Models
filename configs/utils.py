@@ -2,7 +2,33 @@ from transformers import BertConfig, BertForMaskedLM
 from nlp_bert_conv.models import build_bert_with_optional_conv_for_pre_train
 import os
 import requests
+import re
 
+def parse_model_name(model_name):
+    """
+    Parses a TinyBERT model name of the form:
+    pretrain-tinybert-layers6-conv0-k3-d3-maxlen128-vocab30522-ep50-wikisize90000
+    and returns a dictionary of its configuration values.
+    """
+    pattern = (
+        r"pretrain-tinybert"
+        r"-layers(?P<bert_layers>\d+)"
+        r"-conv(?P<conv_layers>\d+)"
+        r"-k(?P<kernel>\d+)"
+        r"-d(?P<d>\d+)"
+        r"-heads(?P<num_attention_heads>\d+)"
+        r"-maxlen(?P<max_length>\d+)"
+        r"-vocab(?P<vocab_size>\d+)"
+        r"-ep(?P<pre_train_epochs>\d+)"
+        r"-wikisize(?P<pre_train_size>\d+)"
+    )
+    match = re.match(pattern, model_name)
+    if not match:
+        raise ValueError(f"Invalid model name format: {model_name}")
+    # Convert all values to int
+    config = {k: int(v) for k, v in match.groupdict().items()}
+    return config
+    
 def load_pretrained_model(model_dir):
     """
     Loads the pretrained TinyBERT model from the given directory.
@@ -14,22 +40,23 @@ def load_pretrained_model(model_dir):
         Model loaded and ready to use.
     """
     config = BertConfig.from_pretrained(model_dir)
-    # You can adjust these params to match your model; or make them dynamic if stored in config
+    params = parse_model_name(model_dir)
     model = build_bert_with_optional_conv_for_pre_train(
-        hidden_size=config.hidden_size,
-        num_hidden_layers=config.num_hidden_layers - 1,  # adjust if needed
-        num_conv_layers=0,                               # adjust if needed
-        kernel_size=3,                                   # adjust if needed
-        num_attention_heads=config.num_attention_heads,
-        intermediate_size=config.intermediate_size,
-        max_position_embeddings=config.max_position_embeddings,
-        conv_channels_dim=3,                             # adjust if needed
-        vocab_size=config.vocab_size,
-        cls_token_id=config.cls_token_id,
-        pad_token_id=config.pad_token_id,
-        sep_token_id=config.sep_token_id,
-        mask_token_id=config.mask_token_id,
+        hidden_size=  params["num_attention_heads"]*64,
+        num_hidden_layers=params["bert_layers"],
+        num_conv_layers=params["conv_layers"],
+        kernel_size=params["kernel"],
+        num_attention_heads= params["num_attention_heads"],
+        intermediate_size= params["num_attention_heads"]*64*4,
+        max_position_embeddings= 128,
+        conv_channels_dim=params["d"],
+        vocab_size= 30522,
+        cls_token_id=0,
+        pad_token_id=101,
+        sep_token_id=102,
+        mask_token_id=103,
     )
+
     # This will automatically use model.safetensors if present
     model = model.from_pretrained(model_dir, config=config)
     return model
