@@ -11,7 +11,7 @@ def parse_model_name(model_name):
     and returns a dictionary of its configuration values.
     """
     pattern = (
-        r"pretrain-tinybert"
+        r"Tiny-Language-Models/models/pretrain-tinybert"
         r"-layers(?P<bert_layers>\d+)"
         r"-conv(?P<conv_layers>\d+)"
         r"-k(?P<kernel>\d+)"
