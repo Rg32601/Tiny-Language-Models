@@ -13,11 +13,14 @@ E-mail address: [ido.kanter@biu.ac.il](mailto:ido.kanter@biu.ac.il) (I. Kanter)
 If you find this repository useful, please cite:
 
 ```bibtex
-@article{gross2025tlm,
-  title={Tiny Language Models},
-  author={Gross, Ronit D. and Tzach, Yarden and Halevi, Tal and Koresh, Ella and Kanter, Ido},
-  journal={arXiv preprint arXiv:2507.14871},
-  year={2025}
+@misc{gross2025tinylanguagemodels,
+      title={Tiny language models}, 
+      author={Ronit D. Gross and Yarden Tzach and Tal Halevi and Ella Koresh and Ido Kanter},
+      year={2025},
+      eprint={2507.14871},
+      archivePrefix={arXiv},
+      primaryClass={cs.CL},
+      url={https://arxiv.org/abs/2507.14871}, 
 }
  ```
 This repository demonstrates pre-training and fine-tuning a compact BERT model (optionally with convolutional layers) using Masked Language Modeling (MLM) on Wikipedia, then fine-tuning for text classification tasks like AG News or DBpedia. It’s modular and PyTorch-based, utilizing Hugging Face Transformers.
