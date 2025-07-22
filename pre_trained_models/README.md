@@ -14,4 +14,4 @@
 ## Usage
 ```python
 from transformers import BertForMaskedLM
-model = BertForMaskedLM.from_pretrained("pretrain-tinybert-layers6-conv2-k3-d64-...")
+model = BertForMaskedLM.from_pretrained("pretrain-tinybert-layers6-conv0-k3-d3-maxlen128-vocab30522-ep50-wikisize90000")
