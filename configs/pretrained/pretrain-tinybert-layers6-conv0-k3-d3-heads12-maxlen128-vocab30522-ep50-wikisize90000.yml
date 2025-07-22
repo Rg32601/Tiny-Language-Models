@@ -15,7 +15,7 @@ files:
   - model.safetensors
 description: |
   This model is a compact BERT-style language model, trained from scratch for masked language modeling.
-  It has 6 transformer layers, 0 convolutional layers, hidden size d=3, and 12 attention heads.
+  It has 6 transformer layers, 0 convolutional layers, hidden size 768, and 12 attention heads.
   Trained for 50 epochs on a 90,000-sample subset of Wikipedia.
 usage: |
   from configs.utils import download_and_load_pre_trained_model
