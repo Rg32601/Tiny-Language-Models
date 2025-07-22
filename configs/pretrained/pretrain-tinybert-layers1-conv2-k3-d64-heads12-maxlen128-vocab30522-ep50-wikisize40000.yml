@@ -1,0 +1,29 @@
+model_name: pretrain-tinybert-layers1-conv2-k3-d64-heads8-maxlen128-vocab30522-ep50-wikisize40000
+architecture: TinyBERT + Convolution
+num_transformer_layers: 1
+num_conv_layers: 2
+conv_kernel_size: 3
+conv_channels: 64
+num_attention_heads: 12
+max_sequence_length: 128
+vocab_size: 30522
+pretrain_epochs: 50
+pretrain_data: Wikipedia
+pretrain_data_size: 40000
+files:
+  - config.json
+  - model.safetensors
+description: |
+  Compact BERT-style language model with convolutional front-end.
+  - 1 transformer layer, 2 convolutional layers (kernel size 3, 64 channels)
+  - 12 attention heads
+  - Max sequence length 128, vocab size 30,522
+  - Trained from scratch for masked language modeling
+  - Pretrained for 50 epochs on a 40,000-sample subset of Wikipedia
+usage: |
+  from configs.utils import download_and_load_pre_trained_model
+  model = download_and_load_pre_trained_model("pretrain-tinybert-layers1-conv2-k3-d64-heads12-maxlen128-vocab30522-ep50-wikisize40000")
+notes: |
+  - This model uses a convolutional block before the transformer encoder.
+  - Suitable for compact NLP tasks and experimentation.
+  - See the main README for additional usage and fine-tuning instructions.
