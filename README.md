@@ -115,6 +115,19 @@ for epoch in range(num_epochs):
     print(f"Test Accuracy: {acc:.4f}")
 ```
 
+### 🧠 Notes on FewRel Dataset
+
+⚠️ The **FewRel** dataset is **not included** in the Hugging Face `datasets` library and must be downloaded manually.
+
+- 📥 Download the dataset from the official site: [https://thunlp.github.io/fewrel.html](https://thunlp.github.io/fewrel.html)
+
+After downloading:
+- Place the files (`train_wiki.json`, `val_wiki.json`) into a local folder.
+- Update your code to load them directly via file path.
+
+> 📌 **Note:** This manual step is not handled automatically in the repository. Make sure you’ve placed the files before attempting to fine-tune on FewRel.
+
+
 ## Customization
 
 - To switch datasets, modify: `init_parser('dbpedia')` or `init_parser('fewrel')`.
