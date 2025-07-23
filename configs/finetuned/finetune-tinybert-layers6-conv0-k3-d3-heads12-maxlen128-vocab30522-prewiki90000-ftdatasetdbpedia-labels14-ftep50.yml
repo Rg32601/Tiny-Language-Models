@@ -1,0 +1,32 @@
+model_name: finetune-tinybert-layers6-conv0-k3-d3-heads12-maxlen128-vocab30522-prewiki90000-ftdatasetdbpedia-labels14-ftep50
+architecture: TinyBERT (fine-tuned)
+num_transformer_layers: 6
+num_conv_layers: 0
+conv_kernel_size: -
+conv_channels: -
+num_attention_heads: 12
+max_sequence_length: 128
+vocab_size: 30522
+
+# Pretraining info
+pretrain_data: Wikipedia
+pretrain_data_size: 90000
+
+# Fine-tuning info
+finetune_dataset: DBpedia
+finetune_num_labels: 14
+finetune_epochs: 50
+
+files:
+  - config.json
+  - model.safetensors
+
+description: |
+  This model is a TinyBERT-based architecture (6 transformer layers, no convolutional layers, hidden size d=3, 12 attention heads), pre-trained on 90,000 Wikipedia samples, and fine-tuned for classification on the DBpedia dataset (14 classes, 50 epochs).
+usage: |
+  from configs.utils import download_and_load_pre_trained_model
+  model = download_and_load_pre_trained_model("finetune-tinybert-layers6-conv0-k3-d3-heads12-maxlen128-vocab30522-prewiki90000-ftdatasetdbpedia-labels14-ftep50")
+notes: |
+  - Pure transformer (no convolutional layers)
+  - Pre-trained on Wikipedia, fine-tuned on DBpedia
+  - For fine-tuning or inference instructions, see the main README
