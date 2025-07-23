@@ -1,5 +1,5 @@
 from transformers import BertConfig, BertForMaskedLM
-from nlp_bert_conv.models import build_bert_with_optional_conv_for_pre_train
+from nlp_bert_conv.models import build_bert_with_optional_conv_for_pre_train,build_bert_with_optional_conv_for_classification
 import os
 import requests
 import re
@@ -126,20 +126,17 @@ def parse_finetune_model_name(model_name):
     return config
 
 def load_finetuned_model(model_dir):
-    """
-    Loads the fine-tuned TinyBERT model from the given directory.
-    """
-    config = BertConfig.from_pretrained(model_dir)
+    # Parse model name for architecture info (if you need dynamic args)
     params = parse_finetune_model_name(os.path.basename(model_dir))
-    from nlp_bert_conv.models import build_bert_with_optional_conv_for_classification
 
+    # Use your builder
     model = build_bert_with_optional_conv_for_classification(
-        hidden_size=params["num_attention_heads"] * 64,  
+        hidden_size=params["num_attention_heads"] * 64,
         num_hidden_layers=params["bert_layers"],
         num_conv_layers=params["conv_layers"],
         kernel_size=params["kernel"],
         num_attention_heads=params["num_attention_heads"],
-        intermediate_size=params["num_attention_heads"] * 64 * 4,  
+        intermediate_size=params["num_attention_heads"] * 64 * 4,
         max_position_embeddings=params["max_length"],
         conv_channels_dim=params["d"],
         num_labels=params["num_labels"],
@@ -149,10 +146,12 @@ def load_finetuned_model(model_dir):
         sep_token_id=102,
         mask_token_id=103,
     )
-    weight_file = os.path.join(model_dir, "model.safetensors")
-    if not os.path.exists(weight_file):
-        weight_file = os.path.join(model_dir, "pytorch_model.bin")
-    model.load_state_dict(torch.load(weight_file, map_location="cpu"))
+
+    # Load config (not always needed if you hardcode above)
+    config = BertConfig.from_pretrained(model_dir)
+
+    # Load weights from .safetensors
+    model = model.from_pretrained(model_dir, config=config, use_safetensors=True)
     return model
 
 def download_and_load_finetuned_model(
