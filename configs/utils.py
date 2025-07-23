@@ -76,6 +76,7 @@ def download_and_load_pre_trained_model(
     Returns:
         Model loaded and ready to use.
     """
+    model_tag = model_tag.replace("(", "").replace(")", "").replace(",", "")
     model_dir = f"Tiny-Language-Models/models/{model_tag}"
     os.makedirs(model_dir, exist_ok=True)
     base_url = f"https://github.com/{repo}/releases/download/{model_tag}/"
