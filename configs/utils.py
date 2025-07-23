@@ -3,6 +3,7 @@ from nlp_bert_conv.models import build_bert_with_optional_conv_for_pre_train
 import os
 import requests
 import re
+import torch
 
 def parse_model_name(model_name):
     """
